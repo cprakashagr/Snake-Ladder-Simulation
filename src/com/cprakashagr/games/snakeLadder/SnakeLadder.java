@@ -4,8 +4,8 @@ import com.cprakashagr.LCG;
 
 public class SnakeLadder {
 
-	static int pos1 = 0;
-	static int pos2 = 0;
+	static int [] pos = new int[2];
+	int turn = 0;	
 	int refDice;
 	
 	boolean flag = true;
@@ -22,28 +22,24 @@ public class SnakeLadder {
 			dice = randNum1.myRandom(1, 6);
 			refDice = (int)dice;
 			
-			pos1 += refDice;
-			pos1 = checkPos(pos1, refDice);
+			pos[turn] += refDice;
+			pos[turn] = checkPos(pos[turn], refDice);
 			
-			System.out.print("Pos1: " + pos1 + ";");
+			System.out.print("Pos"+turn+": " + pos[turn] + ";");
 			
-			if (pos1 >= 100) {
+			if (pos[turn] >= 100) {
 				flag = false;
 				return;
 			}
 			
-			dice = randNum1.myRandom(1, 6);
-			refDice = (int)dice;
+			if (refDice == 6) {
 			
-			pos2 += refDice;
-			pos2 = checkPos(pos2, refDice);
-			
-			System.out.print("Pos2: " + pos2 + ";\n");
-			
-			if (pos2 >= 100) {
-				flag = false;
-				return;
 			}
+			else {
+				turn++;
+				turn %= 2;
+			}
+			System.out.println();
 		}
 	}
 	
